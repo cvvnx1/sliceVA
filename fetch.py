@@ -13,6 +13,8 @@ class fetch:
         self.method = method
         self.username = username
         self.password = password
+        # self.port is a bug here, need fix...
+        # example: input telnet method & unusual port...
         self.port = port
         if self.method == "telnet":
             self.port = 23
@@ -61,6 +63,14 @@ class fetch:
         else:
             pass
         return result
+
+    def search_running(self):
+        if self.method == "ssh":
+            self.ssh.connect(hostname=self.hostname, username=self.username, password=self.password, port=self.port)
+            stdin, stdout, stderr = self.ssh.exec_command('show running-config')
+            return stdout.readlines()
+        elif self.method == "telnet":
+            pass
 
     def run_config(self, cmd_list):
         """

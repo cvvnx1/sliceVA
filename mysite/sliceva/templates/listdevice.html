@@ -1,0 +1,45 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>{{ title }}</title>
+    <meta name="Copyright" content="cvvnx1@163.com" />
+    <meta name="keywords" content="SliceVA, Python, Django, open-source" />
+    <meta name="description" content="SliceVA is a management tool for watching switches and routers" />
+    <link rel="stylesheet" href="{% static "base.css" %}" type="text/css" />
+</head>
+<body>
+<table width="100%" height="30" border="0" cellpadding="0" cellspacing="0" class="toolbar_top">
+  <tr>
+    <td align="left" ><a href="{% url 'sliceva.views.scan' %}"><img src="{% static "scan.jpg" %}"/></a></td>
+    <td align="right"><a href="{% url 'sliceva.views.logout' %}"><img src="{% static "logout.png" %}"/></a></td>
+  </tr>
+</table>
+<table width="30%" align="center" cellpadding="0" cellspacing="0" border="0" class="body">
+  <tr class="title_bar">
+    <td>Alive</td><td>host</td><td>loginmethod</td><td>operation</td>
+  </tr>
+  {% for device in list %}
+  <tr>
+    <td><img src="{% if device.status %}{% static "online.gif" %}{% else %}{% static "offline.gif" %}{% endif %}"/></td>
+    <td><a href="{% url 'sliceva.views.device' device.id %}">{{ device.host }}</a></td>
+    <td>{{ device.loginmethod }}</td>
+    <td>
+    <a href="{% url 'sliceva.views.updatedevice' device.id %}"><img src="{% static "modify.png" %}"/></a>
+    <a href="{% url 'sliceva.views.deletedevice' device.id %}" onclick="return confirm('Del?')"><img src="{% static "delete.gif" %}"/></a>
+    </td>
+  </tr>
+  {%endfor%}
+  <tr>
+    <td><a href="{% url 'sliceva.views.adddevice' %}"><img src="{% static "add.gif" %}"/></a></td>
+  </tr>
+</table>
+<table width="100%" height="30" border="0" cellpadding="0" cellspacing="0" class="toolbar_bottom">
+  <tr>
+    <td>Powered by <b>cvvnx1@163.com</b>.</td>
+  </tr>
+</table>
+</body>
+</html>

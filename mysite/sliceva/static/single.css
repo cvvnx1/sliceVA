@@ -1,0 +1,9 @@
+table { border:0px; border-collapse:collapse; border-spacing:0; }
+
+.running_config {text-align: left; font-size:x-small; }
+
+.framediv {position:static; overflow:hidden; display:block; z-index:10; top:0px; background-color:#ffffff; margin:0px auto; padding:20px 5px 20px 5px; width:900px; }
+.frametable {margin:0px auto; width:100%; }
+.frametable td {width:490px; vertical-align:top; }
+
+.inputdiv {}

@@ -1,0 +1,54 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{{ title }}</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="Copyright" content="cvvnx1@163.com" />
+    <meta name="keywords" content="SliceVA, Python, Django, open-source" />
+    <meta name="description" content="SliceVA is a management tool for watching switches and routers" />
+    <link rel="stylesheet" href="{% static "base.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "device.css" %}" type="text/css" />
+</head>
+<body>
+<table width="100%" height="30" border="0" cellpadding="0" cellspacing="0" class="toolbar_top">
+  <tr>
+    <td align="left" ><a href="{% url 'sliceva.views.listdevice' %}"><img src="{% static "listdevice.png" %}"/><a href="{% url 'sliceva.views.scan' %}"><img src="{% static "scan.jpg" %}"/></td>
+    <td align="right"><a href="{% url 'sliceva.views.logout' %}"><img src="{% static "logout.png" %}"/></a></td>
+  </tr>
+</table>
+<table width="80%" align="center" cellpadding="0" cellspacing="0" border="0" class="body">
+  <tr>
+    <td>
+      <table>
+      <form method="post" action="" />
+        <tr><td>checkcode</td></tr>
+        <tr><td><hr /></td></tr>
+        <tr><td><textarea id="id_checkcode" name="checkcode" wrap="off"/></textarea></td></tr>
+        <tr><td><input type="submit" /></td></tr>
+      </form>
+      </table>
+      <table>
+      <form method="post" action="" />
+        <tr><td>submitcode</td></tr>
+        <tr><td><hr /></td></tr>
+        <tr><td><textarea id="id_submitcode" name="submitcode" wrap="off"/></textarea></td></tr>
+        <tr><td><input type="submit" /></td></tr>
+        <tr>
+        <td>{% for line in status_bar %}{{ line|linebreaksbr }}{% endfor %}</td>
+        </tr>
+      </form>
+      </table>
+    </td>
+    <td width="100%"><div class="show_running">{% for line in running_config %}{{ line|linebreaksbr }}{% endfor %}</div></td>
+  </tr>
+</table>
+<table width="100%" height="30" border="0" cellpadding="0" cellspacing="0" class="toolbar_bottom">
+  <tr>
+    <td>Powered by <b>cvvnx1@163.com</b>.</td>
+  </tr>
+</table>
+</body>
+</html>

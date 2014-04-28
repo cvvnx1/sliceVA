@@ -25,6 +25,13 @@ class fetch:
         self.ssh = paramiko.SSHClient()
         self.ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
+    def connect(self):
+        try:
+            self.ssh.connect(hostname=self.hostname, username=self.username, password=self.password, port=self.port, timeout=5)
+            return True
+        except:
+            return False
+
     def search_match(self, search_list):
         """
         - Input list 'search_list'
@@ -35,10 +42,7 @@ class fetch:
         flag = 0
         if self.method == "ssh":
             for search_str in search_list:
-                try:
-                    self.ssh.connect(hostname=self.hostname, username=self.username, password=self.password, port=self.port)
-                except:
-                    return None
+                self.ssh.connect(hostname=self.hostname, username=self.username, password=self.password, port=self.port)
                 stdin, stdout, stderr = self.ssh.exec_command('show running-config | include ' + search_str)
                 if stdout.readlines().__len__() == 0:
                     flag += 1
@@ -58,10 +62,7 @@ class fetch:
         result = []
         if self.method == "ssh":
             for search_str in search_list:
-                try:
-                    self.ssh.connect(hostname=self.hostname, username=self.username, password=self.password, port=self.port)
-                except:
-                    return None
+                self.ssh.connect(hostname=self.hostname, username=self.username, password=self.password, port=self.port)
                 stdin, stdout, stderr = self.ssh.exec_command('show running-config | include ' + search_str)
                 result.extend(stdout.readlines())
         elif self.method == "telnet":
@@ -72,10 +73,6 @@ class fetch:
 
     def search_running(self):
         if self.method == "ssh":
-            try:
-                self.ssh.connect(hostname=self.hostname, username=self.username, password=self.password, port=self.port, timeout=5)
-            except:
-                return None
             stdin, stdout, stderr = self.ssh.exec_command('show running-config')
             return stdout.readlines()
         elif self.method == "telnet":
@@ -87,21 +84,12 @@ class fetch:
         - Run commands in list 'cmd_list' on device
         """
         if self.method == "ssh":
-            try:
-                self.ssh.connect(hostname=self.hostname, username=self.username, password=self.password, port=self.port, timeout=5)
-            except:
-                return None
             shell = self.ssh.invoke_shell()
+            shell.send('config terminal' + '\r\n')
             for cmd in cmd_list:
                 shell.send(cmd + '\r\n')
                 #here will be a lag... is there any other way for waiting device echo?
-                time.sleep(1)
-
-    def close(self):
-        """
-        - Close connection
-        """
-        if self.method == "ssh":
-            self.ssh.close()
+#                time.sleep(1)
         elif self.method == "telnet":
             pass
+

@@ -1,0 +1,13 @@
+div.show_running {
+    margin-left: 40px;
+    padding-left: 40px;
+    border-left: 1px dashed #999999;
+    font-size: 12px;
+}
+
+div.scan_status {
+    margin-left: 40px;
+    padding-left: 40px;
+    border-left: 1px dashed #999999;
+    font-size: 16px;
+}

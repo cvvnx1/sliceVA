@@ -1,0 +1,97 @@
+* {
+    font-family: 'Microsoft YaHei';
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    background: white;
+}
+
+img {
+    border: 0px;
+    margin: 3px 0px 3px 0px;
+    width: 24px;
+    height: 24px;
+}
+
+input {
+    margin: 6px 0px 0px 0px;
+    border: 1px solid #C0C0C0;
+}
+
+input[type="submit"] {
+    background:#094ab2;
+    color:#ffffff;
+}
+
+input[type="checkbox"] {
+    zoom:150%
+}
+
+textarea {
+    resize: none;
+    wrap: off;
+    width: 400px;
+    height: 300px;
+    background:#eeeeee;
+    color:#000000;
+}
+
+table td {
+    vertical-align:top;
+}
+
+table td hr {
+    width: 90%;
+    text-align: left;
+}
+
+table.toolbar_top {
+    background-color: #486E8A;
+    height: 30px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #CCCCCC;
+    font-family: Tahoma;
+}
+
+table.toolbar_bottom {
+    background-color: #486E8A;
+    height: 30px;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #CCCCCC;
+    font-family: Tahoma;
+}
+
+table.toolbar_bottom td {
+    height: 30px;
+    color: white;
+    line-height: 30px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    font-family: Tahoma;
+}
+
+table.toolbar_bottom td b {
+    color: black;
+}
+
+table.body {
+    margin-top: 10px;
+    margin-bottom: 200px;
+    border: 1px solid gray;
+    padding: 5px;
+}
+
+table.body td {
+    padding: 1px 5px 1px 5px;
+}
+
+table tr.title_bar {
+    background-color: #486E8A;
+    font-size: 14px;
+}
+

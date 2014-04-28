@@ -1,0 +1,47 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>{{ title }}</title>
+    <meta name="Copyright" content="cvvnx1@163.com" />
+    <meta name="keywords" content="SliceVA, Python, Django, open-source" />
+    <meta name="description" content="SliceVA is a management tool for watching switches and routers" />
+    <link rel="stylesheet" href="{% static "base.css" %}" type="text/css" />
+</head>
+<body>
+<table width="100%" height="30" border="0" cellpadding="0" cellspacing="0" class="toolbar_top">
+  <tr>
+    <td align="left" ><a href="{% url 'sliceva.views.listuser' %}"><img src="{% static "listuser.gif" %}"/></td>
+    <td align="right"><a href="{% url 'sliceva.views.logout' %}"><img src="{% static "logout.png" %}"/></a></td>
+  </tr>
+</table>
+<table width="30%" align="center" cellpadding="0" cellspacing="0" border="0" class="body">
+  <form method="post" action="">
+  <tr class="title_bar">
+    <td>Host</td>
+    <td>Login Method</td>
+    <td>admin?</td>
+    <td colspan="2">Operation</td>
+  </tr>
+  <tr>
+    <td>{{ form.username }}</td>
+    <td>{{ form.password }}</td>
+    <td>{{ form.admin }}</td>
+    <td><input type="submit"/></td>
+    <td><a href="{% url 'sliceva.views.listuser' %}"><img src="{% static "back.png" %}"/></a></td>
+  </tr>
+  <tr>
+    <td colspan="4">{{ form.host.errors }}</td>
+  </tr>
+</form>
+</table>
+<table width="100%" height="30" border="0" cellpadding="0" cellspacing="0" class="toolbar_bottom">
+  <tr>
+    <td>Powered by <b>cvvnx1@163.com</b>.</td>
+  </tr>
+</table>
+</body>
+</html>
+
